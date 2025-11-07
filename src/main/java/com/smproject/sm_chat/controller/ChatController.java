@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,5 +19,11 @@ public class ChatController {
         ChatDTO returnMessage = chatService.sendMessage(message);
         System.out.println(returnMessage);
         return returnMessage;
+    }
+
+    @MessageMapping("/send")
+    @SendTo("/topic/users")
+    public ArrayList<String> sendUsers(ChatDTO message){
+        return chatService.sendUsers(message);
     }
 }
