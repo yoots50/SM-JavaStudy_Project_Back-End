@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class ChatController {
     private final ChatService chatService;
-    @MessageMapping("/send")
+    @MessageMapping("/send/messages")
     @SendTo("/topic/messages")
     public ChatDTO sendMessage(ChatDTO message){
         ChatDTO returnMessage = chatService.sendMessage(message);
@@ -21,7 +21,7 @@ public class ChatController {
         return returnMessage;
     }
 
-    @MessageMapping("/send")
+    @MessageMapping("/send/users")
     @SendTo("/topic/users")
     public ArrayList<String> sendUsers(ChatDTO message){
         return chatService.sendUsers(message);
