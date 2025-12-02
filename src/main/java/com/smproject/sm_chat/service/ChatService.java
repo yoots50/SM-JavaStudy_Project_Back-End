@@ -2,6 +2,8 @@ package com.smproject.sm_chat.service;
 
 import com.smproject.sm_chat.component.UserManager;
 import com.smproject.sm_chat.dto.ChatDTO;
+import com.smproject.sm_chat.entity.ChatEntity;
+import com.smproject.sm_chat.repository.ChatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class ChatService {
     private final UserManager userManager;
+    private final ChatRepository chatRepository;
 
     public ChatDTO sendMessage(ChatDTO message){
         if (message.getType().equals(ChatDTO.messageType.ENTER)) {
@@ -23,10 +26,13 @@ public class ChatService {
         } else {
             message.setMessage(message.getNickname() + ": " + message.getMessage());
         }
-        // !!!!! 코드 작성하는 곳 !!!!!
-        // 이곳에 message를 H2 데이터베이스에 저장하는 로직 구성
-        // ChatRepository를 사용할 것, JpaRepository를 사용할 것
-        // ChatEntity에 날짜를 넣어 DB에 넣을 것, 이때 날짜는 이곳에서 결정한다.
+        ChatEntity chatEntity = ChatEntity.builder()
+                .nickname(message.getNickname())
+                .message(message.getMessage())
+                .type(message.getType().name()) // Enum 타입이라면 name()으로 문자열 저장
+                .build();
+
+        chatRepository.save(chatEntity);
         return message;
     }
 

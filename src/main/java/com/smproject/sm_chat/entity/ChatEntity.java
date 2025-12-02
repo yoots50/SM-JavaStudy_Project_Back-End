@@ -4,12 +4,32 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@Getter
+@Setter
 public class ChatEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // !!!!! 코드 작성하는 곳 !!!!!
-    // Repository와 DB가 소통할 때 쓰이는 ChatEntity 구성, ChatDTO를 참고할 것, 날짜를 추가할 것
+    private String type;
+    private String message;
+    private String nickname;
+    private String date;
+
+    public ChatEntity() {}
+
+    public ChatEntity(String type, String message, String nickname, String date) {
+        this.type = type;
+        this.message = message;
+        this.nickname = nickname;
+        this.date = date;
+    }
+
 }
