@@ -7,13 +7,15 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Builder
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
 public class ChatEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +24,4 @@ public class ChatEntity {
     private String message;
     private String nickname;
     private String date;
-
-    public ChatEntity() {}
-
-    public ChatEntity(String type, String message, String nickname, String date) {
-        this.type = type;
-        this.message = message;
-        this.nickname = nickname;
-        this.date = date;
-    }
-
 }

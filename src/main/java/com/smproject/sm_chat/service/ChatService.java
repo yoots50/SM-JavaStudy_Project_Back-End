@@ -4,10 +4,12 @@ import com.smproject.sm_chat.component.UserManager;
 import com.smproject.sm_chat.dto.ChatDTO;
 import com.smproject.sm_chat.entity.ChatEntity;
 import com.smproject.sm_chat.repository.ChatRepository;
+import java.text.SimpleDateFormat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -16,23 +18,17 @@ public class ChatService {
     private final ChatRepository chatRepository;
 
     public ChatDTO sendMessage(ChatDTO message){
-        if (message.getType().equals(ChatDTO.messageType.ENTER)) {
-
-            message.setMessage(message.getNickname() + "님이 입장하셨습니다.");
-        }
-        else if (message.getType().equals(ChatDTO.messageType.LEAVE)) {
-
-            message.setMessage(message.getNickname() + "님이 퇴장하셨습니다.");
-        } else {
-            message.setMessage(message.getNickname() + ": " + message.getMessage());
-        }
+        Date date = new Date();
+        SimpleDateFormat formatMethod = new SimpleDateFormat("yyyy-MM-dd|HH:mm:ss");
+        String strDate = formatMethod.format(date);
         ChatEntity chatEntity = ChatEntity.builder()
                 .nickname(message.getNickname())
                 .message(message.getMessage())
-                .type(message.getType().name()) // Enum 타입이라면 name()으로 문자열 저장
+                .type(message.getType().name()).date(strDate)
                 .build();
-
+        System.out.println(chatEntity);
         chatRepository.save(chatEntity);
+        message.setDate(strDate);
         return message;
     }
 

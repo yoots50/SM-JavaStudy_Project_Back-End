@@ -18,4 +18,5 @@ public class ChatDTO {
     private messageType type;
     private String message;
     private String nickname;
+    private String date;
 }
