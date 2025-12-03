@@ -33,6 +33,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.jsoup:jsoup:1.18.1'
+	implementation("org.json:json:20250517")
 }
 
 tasks.named('test') {
