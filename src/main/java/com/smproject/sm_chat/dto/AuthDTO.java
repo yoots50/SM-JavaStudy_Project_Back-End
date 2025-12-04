@@ -1,18 +1,22 @@
 package com.smproject.sm_chat.dto;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 @Builder
-public record AuthDTO(
-    String name,
-    String username,
-    String department,
-    String email,
-    int year,
-    int semester
-) {
+@Getter
+@Setter
+public class  AuthDTO {
+
+    private String name;
+    private String username;
+    private String department;
+    private String email;
+    private int year;
+    private int semester;
 
   public static AuthDTO from(JSONArray json) {
     return from(json.getJSONObject(0));
