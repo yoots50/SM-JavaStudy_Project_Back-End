@@ -12,3 +12,8 @@
 
 # Tools
 <img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white"> <img src="https://img.shields.io/badge/h2database-09476B?style=for-the-badge&logo=h2database&logoColor=white"> <img src="https://img.shields.io/badge/intellijidea-000000?style=for-the-badge&logo=intellijidea&logoColor=white">
+
+# 패치노트
+## v1.1
+- 불필요한 import문 제거
+- 불필요한 System.out.println 제거

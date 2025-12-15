@@ -26,7 +26,6 @@ public class ChatService {
                 .message(message.getMessage())
                 .type(message.getType().name()).date(strDate)
                 .build();
-        System.out.println(chatEntity);
         chatRepository.save(chatEntity);
         message.setDate(strDate);
         return message;

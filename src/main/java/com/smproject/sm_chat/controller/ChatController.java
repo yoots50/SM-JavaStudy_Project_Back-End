@@ -17,7 +17,6 @@ public class ChatController {
     @SendTo("/topic/messages")
     public ChatDTO sendMessage(ChatDTO message){
         ChatDTO returnMessage = chatService.sendMessage(message);
-        System.out.println(returnMessage);
         return returnMessage;
     }
 
